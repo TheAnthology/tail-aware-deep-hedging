@@ -1,0 +1,19 @@
+{
+  "section": "5.3 (project numbering; paper Heston benchmark is 5.2)",
+  "members": [[5201, 5211], [6202, 6212], [6203, 6213]],
+  "expert_paths": 5120000,
+  "chunk": 8192,
+  "calibration_paths": 8192,
+  "calibration_seed": 6291,
+  "validation_paths": 32768,
+  "validation_seed": 6214,
+  "residual_pool_paths": 131072,
+  "pool_seed": 6301,
+  "residual_updates": 5000,
+  "residual_batch": 1024,
+  "validation_interval": 500,
+  "residual_seeds": [[6501, 6601], [6502, 6602], [6503, 6603]],
+  "risk_budget": 1.238727,
+  "test_paths": 1000000,
+  "test_seed": 7403
+}

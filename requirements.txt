@@ -1,0 +1,5 @@
+tensorflow==2.20.0
+keras==3.10.0
+numpy==1.26.4
+scipy==1.17.0
+QuantLib==1.40

@@ -1,0 +1,23 @@
+{
+  "q": 1.260328678818201,
+  "scale": 0.6426044149514022,
+  "budget": 3.0680534040542575,
+  "window_id": 0,
+  "test_paths": 100000,
+  "test_seed": 11105,
+  "experts": {
+    "C": [
+      "C_1.npz"
+    ],
+    "P": [
+      "P_1.npz"
+    ]
+  },
+  "residuals": [
+    {
+      "name": "Residual_1",
+      "weights": "R_1.npz",
+      "selection": "validation selected at update3500"
+    }
+  ]
+}

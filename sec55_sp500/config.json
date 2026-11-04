@@ -1,0 +1,19 @@
+{
+  "section": "5.5 S&P 500 historical calibration and evaluation",
+  "members": [[11201, 11101]],
+  "expert_paths": 20000000,
+  "chunk": 65536,
+  "calibration_paths": 8192,
+  "calibration_seed": 11102,
+  "validation_paths": 32768,
+  "validation_seed": 11103,
+  "residual_pool_paths": 131072,
+  "pool_seed": 11104,
+  "residual_updates": 5000,
+  "residual_batch": 1024,
+  "validation_interval": 500,
+  "residual_seeds": [[11301, 11401]],
+  "risk_budget": "validation_C",
+  "test_paths": 100000,
+  "test_seed": 11105
+}

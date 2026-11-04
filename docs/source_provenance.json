@@ -1,0 +1,16 @@
+{
+  "description": "Extracted from the preserved research workspace; hashes identify source files before public refactoring. Private machine paths omitted.",
+  "sha256": {
+    "heston52_market.py": "7bb0ec45f568333244c00a0bbce379cb23b7dbc6320ed193f0e697b84d9d6940",
+    "heston52_benchmark.py": "0bb07903bd0df9c68d7caa4782c48a192835a0f93bd0cc6553156fea26d003f6",
+    "paper_market.py": "7ed321f310c37190a59ece0e6a2ff9f0874ef36b420b29737934543c3395e33a",
+    "tf_heston52_engine.py": "769f2c05897209a9311254969be477203047bf39e786285141e383f0811db99d",
+    "run_section52_calibrated.py": "131aa8f9dbc23caecb6f779f3a92cebf22760e936a5e52e18e9c33daeb1d18b1",
+    "run_risk_ablation_v1.py": "7ea34e6cae1d585e36f190150bf21aa001b847eb160b2b30b2d3f312db3413a5",
+    "sp500_extension_engine_v1.py": "4ece619dafa9eb2b8e2a60d3991c3c6596f7f91655617bc08d37c985af399dd4",
+    "sp500_single_expert_step_v1.py": "eb9af7c0525efde9cb6cdfb051931fd542f8afd7111040de03373a47e41fca63",
+    "residual_combiner_engine_v1.py": "65aa999419dc2ba54e86ea4a8f68a3da7e2f7e02f77945fd14866c28dfbe280f",
+    "moe_liability_v1.py": "591304fd540dc6819ce2b84b7fc0d052ce5d7aa6c6c17b82a63228d7e0435d8a",
+    "prepare_sp500.py": "235dfc1148b956a76e008ea1e7282118d52acfc6bc3dd86cf79b23d4d717edb3"
+  }
+}

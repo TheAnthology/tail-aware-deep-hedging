@@ -1,0 +1,206 @@
+{
+  "completed_origins": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "target_origins": 50,
+  "one_seed_per_origin": true,
+  "overlapping_30_day_contracts": true,
+  "summary": {
+    "BS": {
+      "mean_index_pnl": 2.0809915765438083,
+      "mean_normalized_pnl": 0.08163486079387738,
+      "normalized_cvar75": 0.05846191453660934
+    },
+    "C": {
+      "mean_index_pnl": -0.925049864140376,
+      "mean_normalized_pnl": -0.035443310089940526,
+      "normalized_cvar75": 0.22124591684315292
+    },
+    "R": {
+      "mean_index_pnl": 6.032870659856342,
+      "mean_normalized_pnl": 0.23626733924358784,
+      "normalized_cvar75": 0.01493693928930595
+    }
+  },
+  "rows": [
+    {
+      "window_id": 0,
+      "historical_end": "2018-01-02",
+      "BS": {
+        "normalized_pnl": 0.23570617784995473,
+        "index_pnl": 6.094512964753959
+      },
+      "C": {
+        "normalized_pnl": 0.017172089198689733,
+        "index_pnl": 0.4440083887828658
+      },
+      "R": {
+        "normalized_pnl": 0.43224077783756787,
+        "index_pnl": 11.176189985581658
+      },
+      "residual_source": "learned_residual"
+    },
+    {
+      "window_id": 1,
+      "historical_end": "2017-12-26",
+      "BS": {
+        "normalized_pnl": 0.041201837948269926,
+        "index_pnl": 1.0639550815270749
+      },
+      "C": {
+        "normalized_pnl": -0.24034938561994856,
+        "index_pnl": -6.20654230263513
+      },
+      "R": {
+        "normalized_pnl": 0.16235773133072628,
+        "index_pnl": 4.192563775708633
+      },
+      "residual_source": "learned_residual"
+    },
+    {
+      "window_id": 2,
+      "historical_end": "2017-12-19",
+      "BS": {
+        "normalized_pnl": -0.049849649809672325,
+        "index_pnl": -1.2916691727892722
+      },
+      "C": {
+        "normalized_pnl": -0.21025220868160588,
+        "index_pnl": -5.44790780881661
+      },
+      "R": {
+        "normalized_pnl": 0.14520263702213088,
+        "index_pnl": 3.7623889187844544
+      },
+      "residual_source": "learned_residual"
+    },
+    {
+      "window_id": 3,
+      "historical_end": "2017-12-12",
+      "BS": {
+        "normalized_pnl": 0.06358999981285507,
+        "index_pnl": 1.6360626417852788
+      },
+      "C": {
+        "normalized_pnl": -0.09456780993369396,
+        "index_pnl": -2.43306905807995
+      },
+      "R": {
+        "normalized_pnl": -0.09456780993369396,
+        "index_pnl": -2.43306905807995
+      },
+      "residual_source": "frozen_C_fallback"
+    },
+    {
+      "window_id": 4,
+      "historical_end": "2017-12-05",
+      "BS": {
+        "normalized_pnl": -0.11690605550598598,
+        "index_pnl": -2.998616919136228
+      },
+      "C": {
+        "normalized_pnl": -0.20502639561265568,
+        "index_pnl": -5.258886001180216
+      },
+      "R": {
+        "normalized_pnl": 0.1956913863246017,
+        "index_pnl": 5.019444881810491
+      },
+      "residual_source": "learned_residual"
+    },
+    {
+      "window_id": 5,
+      "historical_end": "2017-11-28",
+      "BS": {
+        "normalized_pnl": 0.0521198820000901,
+        "index_pnl": 1.3330388942188307
+      },
+      "C": {
+        "normalized_pnl": 0.020384897514083455,
+        "index_pnl": 0.5213722709673637
+      },
+      "R": {
+        "normalized_pnl": 0.42872378720231685,
+        "index_pnl": 10.965210612266885
+      },
+      "residual_source": "learned_residual"
+    },
+    {
+      "window_id": 6,
+      "historical_end": "2017-11-21",
+      "BS": {
+        "normalized_pnl": 0.2750287295125491,
+        "index_pnl": 7.014992492158141
+      },
+      "C": {
+        "normalized_pnl": 0.22842118418123514,
+        "index_pnl": 5.826201847789589
+      },
+      "R": {
+        "normalized_pnl": 0.5410468371274479,
+        "index_pnl": 13.800156467587422
+      },
+      "residual_source": "learned_residual"
+    },
+    {
+      "window_id": 7,
+      "historical_end": "2017-11-14",
+      "BS": {
+        "normalized_pnl": 0.19911101783251306,
+        "index_pnl": 5.046628191085904
+      },
+      "C": {
+        "normalized_pnl": 0.17307964372871054,
+        "index_pnl": 4.386842169021274
+      },
+      "R": {
+        "normalized_pnl": 0.17307964372871054,
+        "index_pnl": 4.386842169021274
+      },
+      "residual_source": "frozen_C_fallback"
+    },
+    {
+      "window_id": 8,
+      "historical_end": "2017-11-07",
+      "BS": {
+        "normalized_pnl": 0.05496592537539646,
+        "index_pnl": 1.3724112595130633
+      },
+      "C": {
+        "normalized_pnl": -0.027919258873583708,
+        "index_pnl": -0.6970992478281353
+      },
+      "R": {
+        "normalized_pnl": 0.39427425859670695,
+        "index_pnl": 9.844397745307365
+      },
+      "residual_source": "learned_residual"
+    },
+    {
+      "window_id": 9,
+      "historical_end": "2017-10-31",
+      "BS": {
+        "normalized_pnl": 0.06138074292280371,
+        "index_pnl": 1.5386003323213313
+      },
+      "C": {
+        "normalized_pnl": -0.015375856800636356,
+        "index_pnl": -0.3854188994248116
+      },
+      "R": {
+        "normalized_pnl": -0.015375856800636356,
+        "index_pnl": -0.3854188994248116
+      },
+      "residual_source": "frozen_C_fallback"
+    }
+  ]
+}

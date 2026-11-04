@@ -1,0 +1,79 @@
+{
+  "checks": [
+    {
+      "file": "sec53_theoretical/checkpoints/C_1.npz",
+      "sha256": "a4db3d8550990e5ee0bc6bfddd9ac242eec2c85e2f63266363561d873c57a4a3",
+      "source_sha256": "be74028c94d76740016b57566d8414bc7ab994a066a7a0d639ce7b2d50bb748a",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec53_theoretical/checkpoints/C_2.npz",
+      "sha256": "86b00b6c4bd67052e8060d38ae83e1833d89b02aa6e2cbfba5c6fa8321d6e589",
+      "source_sha256": "a37afe1cb6bae66cc95ea480973dce57a4e4fc360913474f5723f6b4d8a22aa4",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec53_theoretical/checkpoints/C_3.npz",
+      "sha256": "b5e67e36aaa41e314e9e085e217544c7ddb3971b1a2aa37a40689928a449b9ed",
+      "source_sha256": "073f7003b8667a8fd06ac4da06716c4ceb12d2179601eaf9f90326062a70369b",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec53_theoretical/checkpoints/P_1.npz",
+      "sha256": "8c8878b8f2fedbe7037ac5dba27698fac42070aec33308d209bac6ed3a99f2e9",
+      "source_sha256": "89be73f222b01d86c8ac5972d0a55b43f3617058200e3e0ae487f8e1d94576f4",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec53_theoretical/checkpoints/P_2.npz",
+      "sha256": "f7bbf473eab4d7b0b657776b5737fa65946e0f79ba1ec49d0b1303233a50ba1d",
+      "source_sha256": "393e4ea07550fb3996f829ff9cd47413c53c8ac8725818a57f0bd95cdb6228f6",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec53_theoretical/checkpoints/P_3.npz",
+      "sha256": "a84c95dafea44140a810d0bf35d61b819e38f0f6a28212de925bdd196d72912d",
+      "source_sha256": "1ec75356da3142ae835c369859a1087507058de9139a98df69a377044a1c17e7",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec53_theoretical/checkpoints/R_1.npz",
+      "sha256": "369ef579fe2482c57e183088430946c8edf9d81e2fcc689585506d6949e6ae2f",
+      "source_sha256": "3ad7f42fccb61959cdc9b07b535c1c5d394a95633c00120de3ea6aa81cb87fb9",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec53_theoretical/checkpoints/R_2.npz",
+      "sha256": "d2792268c7d173abda3545cb9edafe0222485d720731d86a08d7214889940d7c",
+      "source_sha256": "d8225209487d7b49a02300511e29b8c12daf75a90ff87ca138675b885722a878",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec53_theoretical/checkpoints/R_3.npz",
+      "sha256": "c3f8bb76fc60d280e593b174305c833209161f474742a6bcbddf7b911e8f28dc",
+      "source_sha256": "12c6cda6e5b9d328150ed4a846e4e03ef56868cd2b71ab75df88aa76780d9550",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec55_sp500/checkpoints/C_1.npz",
+      "sha256": "58126a19e01d0a4713a07454be97856e917b98087d43682474c7a2eeedc866c1",
+      "source_sha256": "0d2e7bef93f485741f46d29c2c0b3d78320657e4590a25bbea5987ec3bcbd780",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec55_sp500/checkpoints/P_1.npz",
+      "sha256": "c7a5f81fe310499b100d27efc2d2f4f8733d5e40fc9d0912f75602977e4df62e",
+      "source_sha256": "33a4fbd85b45813245f48bae9ef2c4c7d978e6a99f526c39bff89d03dc793b19",
+      "exact_forward_and_all_weight_arrays": true
+    },
+    {
+      "file": "sec55_sp500/checkpoints/R_1.npz",
+      "sha256": "97fc7cda1b3f1d69e3c2291d7c4149d7b2934463dc2e7f1cc2965a7921785126",
+      "source_sha256": "bb8fb42ef2df0980b214eb24e81c741c68719ec1ef11cc9b5f426cdf2d283ccc",
+      "exact_forward_and_all_weight_arrays": true
+    }
+  ],
+  "all_exact": true,
+  "paths_per_probe": 64,
+  "scope": "Model refactor forward and complete weight-buffer parity, not a full training repeat."
+}

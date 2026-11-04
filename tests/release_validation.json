@@ -1,0 +1,36 @@
+{
+  "sp500": {
+    "CVaR": {
+      "paths": 100000,
+      "maximum_absolute_pnl_gap": 0.0
+    },
+    "Residual_1": {
+      "paths": 100000,
+      "maximum_absolute_pnl_gap": 0.0
+    }
+  },
+  "heston": {
+    "CVaR": {
+      "paths": 512,
+      "maximum_absolute_pnl_gap": 0.0
+    },
+    "Residual_1": {
+      "paths": 512,
+      "maximum_absolute_pnl_gap": 0.0
+    },
+    "Residual_2": {
+      "paths": 512,
+      "maximum_absolute_pnl_gap": 0.0
+    },
+    "Residual_3": {
+      "paths": 512,
+      "maximum_absolute_pnl_gap": 0.0
+    }
+  },
+  "unit_tests": "5 passed",
+  "smoke_training": {
+    "sp500": "COMPLETE",
+    "heston": "COMPLETE"
+  },
+  "scope": "Public runners: short training and frozen-policy replay; full training budgets not repeated."
+}

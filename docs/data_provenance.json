@@ -1,0 +1,46 @@
+{
+  "source_page": "https://www.openintro.org/data/index.php?data=sp500_1950_2018",
+  "download_url": "https://www.openintro.org/data/csv/sp500_1950_2018.csv",
+  "acquisition_date": "2026-10-28",
+  "source_attribution": "OpenIntro snapshot; upstream Yahoo! Finance",
+  "raw_sha256": "71835dbbd3b35058dc673db07b6500b9146034dde765225120a203ef1b2ae667",
+  "raw_rows": 17346,
+  "raw_first": "1950-01-03",
+  "raw_last": "2018-12-07",
+  "selected_price_rows": 2660,
+  "selected_return_rows": 2659,
+  "main_price_rows": 1218,
+  "main_return_rows": 1217,
+  "main_calibration_returns": 1187,
+  "main_test_returns": 30,
+  "adjusted_close_equals_close_in_selected_period": true,
+  "latest_window": {
+    "window_id": 0,
+    "requested_end": "2018-01-02",
+    "price_start": "2013-03-05",
+    "price_end": "2018-01-02",
+    "calibration_last_date": "2017-11-16",
+    "test_first_return_date": "2017-11-17",
+    "calibration_returns": 1187,
+    "test_returns": 30
+  },
+  "earliest_window": {
+    "window_id": 299,
+    "requested_end": "2012-04-10",
+    "price_start": "2007-06-12",
+    "price_end": "2012-04-10",
+    "calibration_last_date": "2012-02-27",
+    "test_first_return_date": "2012-02-28",
+    "calibration_returns": 1187,
+    "test_returns": 30
+  },
+  "validation": "Unique increasing weekday dates; positive finite OHLC/adjusted prices; no missing required prices; exact endpoint counts.",
+  "caveats": [
+    "Not the verified original author data file; paper does not name a vendor in Section 5.5.",
+    "Adjusted Close label is preserved; equality to Close does not imply a dividend-reinvested total return series.",
+    "Returns are decimal daily returns, not percentage units; no forward filling or interpolation.",
+    "Rolling reconstruction: shift endpoint by calendar weeks, choose latest available trading day, retain 1218 prices. Inferred convention, not verified author code.",
+    "30-day windows overlap; 300 windows are not 300 independent observations.",
+    "All model calibration and hyperparameter selection must use pre-test observations only."
+  ]
+}
