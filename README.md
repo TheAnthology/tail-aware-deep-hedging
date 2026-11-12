@@ -43,6 +43,10 @@ Only the main expert/residual families and necessary benchmarks are retained. Th
 
 ## Setup
 
+For a guided reading order, data shapes, and the key accounting equations, see
+[Reading the code](docs/CODE_GUIDE.md). Start at `common/run.py` for training or
+`common/replay.py` for frozen-model evaluation.
+
 Use Python 3.11. The pinned dependencies reflect the tested local research environment; Linux/GPU parity and speed are not yet certified.
 
 ```bash
@@ -96,3 +100,4 @@ The publication runners are curated refactors. They have short-run and frozen-fo
 The repository makes no blanket claim that Residual outperforms CVaR or Black–Scholes. See the two section result tables, including every residual seed and failure.
 
 [References and attribution](docs/REFERENCES.md). No software license has been selected for this initial public release; visibility alone is not an additional license grant. Third-party dependencies retain their own licenses.
+
