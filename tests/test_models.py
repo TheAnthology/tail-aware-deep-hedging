@@ -1,4 +1,5 @@
 import hashlib
+import inspect
 import json
 import tempfile
 import unittest
@@ -20,6 +21,26 @@ from sec55_sp500.market import paths
 
 
 class NumericalChecks(unittest.TestCase):
+    def test_training_steps_accept_original_keyword_arguments(self):
+        from sec53_theoretical.experts import make_step as expert_step
+        from sec53_theoretical.residual import make_step as heston_residual_step
+        from sec55_sp500.models import make_res_step as stock_residual_step
+
+        expert = HE()
+        expert.initialize()
+        step, _ = expert_step(expert, "C", 1.7)
+        inspect.signature(step).bind(f=None, changes=None, payoff=None)
+
+        for make_step, model in [
+            (heston_residual_step, HR([0.5, 100.0], 2.0, 1.7)),
+            (stock_residual_step, SR(0.5, 2.0, 1.7)),
+        ]:
+            step, _, _ = make_step(model)
+            with self.subTest(model=model.name):
+                inspect.signature(step).bind(
+                    f=None, changes=None, hc=None, hp=None, liability=None, payoff=None
+                )
+
     def test_fractional_cvar_and_tensor(self):
         self.assertEqual(empirical_cvar([1, 2, 3, 4], 0.75), 4.0)
         self.assertAlmostEqual(empirical_cvar([1, 2, 3, 4], 0.6), 3.625)

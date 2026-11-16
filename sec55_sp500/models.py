@@ -314,18 +314,9 @@ def make_res_step(model):
     dual = tf.Variable(1.0, trainable=False, dtype=tf.float64)
 
     @tf.function(reduce_retracing=True)
-    def step(features, changes, cvar_holdings, probability_holdings, liability, payoff):
+    def step(f, changes, hc, hp, liability, payoff):
         with tf.GradientTape() as tape:
-            pnl, holdings, correction, surplus = model(
-                (
-                    features,
-                    changes,
-                    cvar_holdings,
-                    probability_holdings,
-                    liability,
-                    payoff,
-                )
-            )
+            pnl, _, correction, _ = model((f, changes, hc, hp, liability, payoff))
             soft_probability = tf.reduce_mean(tf.sigmoid(-pnl / 0.1))
             tail_risk = tail_cvar_tf(-pnl, 0.95)
             # Positive excess means CVaR95 is above the fixed risk budget.

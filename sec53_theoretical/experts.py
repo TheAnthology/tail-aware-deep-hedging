@@ -142,9 +142,9 @@ def make_step(model, name, q):
             tf.TensorSpec([256], tf.float32),
         ]
     )
-    def step(features, changes, payoff):
+    def step(f, changes, payoff):
         with tf.GradientTape() as tape:
-            holdings = model(features, training=True)
+            holdings = model(f, training=True)
             # Eta is in liability units; subtract the fixed premium afterward.
             liability_loss = payoff - tf.reduce_sum(holdings * changes, axis=[1, 2])
             loss = liability_loss - q
