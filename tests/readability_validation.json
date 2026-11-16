@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-12",
+  "baseline_commit": "d7045f2272c8297ddd4ef7b29b441c30e889bf2f",
+  "purpose": "Check that readability changes preserve the existing numerical behavior.",
+  "environment": {
+    "platform": "macOS arm64, CPU",
+    "python": "3.11",
+    "tensorflow": "2.20.0",
+    "QuantLib": "1.40",
+    "numpy": "1.26.4",
+    "scipy": "1.17.0"
+  },
+  "existing_unit_tests": {
+    "command": "python -m unittest discover -s tests -v",
+    "baseline_passed": 5,
+    "refactor_passed": 5
+  },
+  "fixed_probe_comparison": {
+    "recorded_arrays_and_metadata": 3623,
+    "all_exact": true,
+    "coverage": [
+      "Seeded Heston left/trapezoid paths and GJR-GARCH simulated/observed paths",
+      "All 12 released expert/residual checkpoint forwards on 256 fixed paths",
+      "One expert update per preference and section, including optimizer arrays",
+      "Independent BatchNorm calibration records and resulting weight arrays",
+      "Two residual updates per section, optimizer arrays and trained forwards",
+      "Expert projections, terminal P&L and shared risk metrics"
+    ]
+  },
+  "smoke_cli_comparison": {
+    "sec53_theoretical": {
+      "baseline_status": "COMPLETE",
+      "refactor_status": "COMPLETE",
+      "metrics_pnl_selection_and_validation_logs_exact": true,
+      "saved_hdf5_weight_arrays_exact": 1690,
+      "selection": "no_feasible_candidate"
+    },
+    "sec55_sp500": {
+      "baseline_status": "COMPLETE",
+      "refactor_status": "COMPLETE",
+      "metrics_pnl_selection_and_validation_logs_exact": true,
+      "saved_hdf5_weight_arrays_exact": 352,
+      "selection": "learned_residual"
+    },
+    "elapsed_time_excluded_from_comparison": true
+  },
+  "scope": "Local CPU equivalence probes and existing smoke budgets only. Full-budget training and archived million-path replay were not repeated; no new research-performance claim is made. Released checkpoints and archived results are unchanged."
+}
