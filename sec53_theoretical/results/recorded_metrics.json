@@ -39,7 +39,7 @@
       "empirically_feasible": false,
       "cvar95_budget_excess": 0.005641873783170048
     },
-    "R_1": {
+    "Novel_model_1_seed_1": {
       "samples": 1000000,
       "mean_pnl": -0.011079051864386276,
       "mse": 0.29760984053508543,
@@ -74,7 +74,7 @@
       "empirically_feasible": false,
       "cvar95_budget_excess": 0.0026818418910499187
     },
-    "R_2": {
+    "Novel_model_1_seed_2": {
       "samples": 1000000,
       "mean_pnl": -0.011059137375650636,
       "mse": 0.29674687426149343,
@@ -109,7 +109,7 @@
       "empirically_feasible": true,
       "cvar95_budget_excess": -0.01304545187522721
     },
-    "R_3": {
+    "Novel_model_1_seed_3": {
       "samples": 1000000,
       "mean_pnl": -0.011379467609409274,
       "mse": 0.2971737553592963,

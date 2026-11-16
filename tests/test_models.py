@@ -10,10 +10,10 @@ from common.risk import empirical_cvar, tail95_tf
 from common.io import save_weights, load_weights
 from sec53_theoretical import market as hm
 from sec53_theoretical.experts import CVaRExpert as HE, calibrate as hcal
-from sec53_theoretical.residual import ResidualCombiner as HR
+from sec53_theoretical.novel_model_1 import Novel_model_1 as HestonPolicy
 from sec55_sp500.models import (
     CVaRExpert as SE,
-    StockResidual as SR,
+    Novel_model_1 as StockPolicy,
     calibrate as scal,
     market_data,
 )
@@ -23,8 +23,8 @@ from sec55_sp500.market import paths
 class NumericalChecks(unittest.TestCase):
     def test_training_steps_accept_original_keyword_arguments(self):
         from sec53_theoretical.experts import make_step as expert_step
-        from sec53_theoretical.residual import make_step as heston_residual_step
-        from sec55_sp500.models import make_res_step as stock_residual_step
+        from sec53_theoretical.novel_model_1 import make_step as heston_policy_step
+        from sec55_sp500.models import make_policy_step as stock_policy_step
 
         expert = HE()
         expert.initialize()
@@ -32,8 +32,8 @@ class NumericalChecks(unittest.TestCase):
         inspect.signature(step).bind(f=None, changes=None, payoff=None)
 
         for make_step, model in [
-            (heston_residual_step, HR([0.5, 100.0], 2.0, 1.7)),
-            (stock_residual_step, SR(0.5, 2.0, 1.7)),
+            (heston_policy_step, HestonPolicy([0.5, 100.0], 2.0, 1.7)),
+            (stock_policy_step, StockPolicy(0.5, 2.0, 1.7)),
         ]:
             step, _, _ = make_step(model)
             with self.subTest(model=model.name):
@@ -94,7 +94,7 @@ class NumericalChecks(unittest.TestCase):
                 load_weights(replay, path)
                 np.testing.assert_array_equal(a, replay(f, training=False).numpy())
 
-    def test_residual_zero_head_accounting_and_causality(self):
+    def test_policy_zero_head_accounting_and_causality(self):
         rng = np.random.default_rng(6)
         for steps, assets in [(30, 2), (6, 1)]:
             shape = (32, steps, 2) if assets == 2 else (32, steps)
@@ -111,7 +111,11 @@ class NumericalChecks(unittest.TestCase):
             liability = rng.uniform(0, 2, (32, steps))
             z = rng.uniform(0, 4, 32)
             inputs = [tf.constant(a) for a in [f, ch, hc, hp, liability, z]]
-            m = HR([0.5, 100.0], 2.0, 1.7) if assets == 2 else SR(0.5, 2.0, 1.7)
+            m = (
+                HestonPolicy([0.5, 100.0], 2.0, 1.7)
+                if assets == 2
+                else StockPolicy(0.5, 2.0, 1.7)
+            )
             pl, h, c, s = m(tuple(inputs))
             np.testing.assert_array_equal(h.numpy(), hc)
             np.testing.assert_array_equal(c.numpy(), np.zeros(shape))
@@ -130,6 +134,46 @@ class NumericalChecks(unittest.TestCase):
             after = m(tuple(tf.constant(a) for a in altered))[1].numpy()
             np.testing.assert_array_equal(before[:, :3], after[:, :3])
             self.assertGreater(float(np.max(np.abs(before[:, 3:] - after[:, 3:]))), 0.0)
+
+    def test_paper_comparators_match_recorded_holdings(self):
+        from sec53_theoretical.experiment import Experiment as HestonExperiment
+        from sec55_sp500.experiment import Experiment as StockExperiment
+
+        root = Path(__file__).resolve().parents[1]
+        heston = HestonExperiment.paper_model()
+        stock = StockExperiment.paper_model()
+        for section, model in [("sec53_theoretical", heston), ("sec55_sp500", stock)]:
+            directory = root / section / "checkpoints"
+            manifest = json.loads((directory / "manifest.json").read_text())
+            load_weights(model, directory / manifest["paper_deep_hedge"]["weights"])
+
+        # Reference holdings from the calibrated research implementations.
+        features = np.stack(
+            [np.log(np.linspace(100, 105, 30)), np.full(30, 0.04)], axis=-1
+        )
+        holdings = heston(features[None].astype("float32")).numpy()
+        np.testing.assert_allclose(
+            holdings[0, [0, 15, 29]],
+            [
+                [0.53114235, 173.62302],
+                [0.74977630, 20.081152],
+                [0.70116699, -6.1891212],
+            ],
+            rtol=2e-5,
+            atol=2e-4,
+        )
+
+        # Replay receives normalized prices; the original stock net reads log index levels.
+        from sec55_sp500.paper_hedge import paper_features
+
+        normalized = np.linspace(100, 104, 31)[None]
+        holdings = stock(paper_features(normalized, 2500.0)).numpy()[0]
+        np.testing.assert_allclose(
+            holdings,
+            [5.7572417, -220.76381, 323.86270, 84.45623, 37.275337, -35.189373],
+            rtol=2e-5,
+            atol=2e-4,
+        )
 
     def test_released_weight_files(self):
         root = Path(__file__).resolve().parents[1]

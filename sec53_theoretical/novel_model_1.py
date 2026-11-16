@@ -1,4 +1,4 @@
-"""Causal two-asset residual holdings and CVaR95-constrained training."""
+"""Causal two-asset Novel_model_1 holdings and CVaR95-constrained training."""
 
 import numpy as np
 import tensorflow as tf
@@ -7,15 +7,15 @@ from common.risk import tail95_tf
 KEYS = ["f", "changes", "hc", "hp", "liability", "payoff"]
 
 
-class ResidualCombiner(tf.keras.Model):
+class Novel_model_1(tf.keras.Model):
     """Shared date-independent 6 -> 32 -> 32 -> 2 tanh MLP.
 
-    Residual: h_C + D F(z, (h_P-h_C)/D).
+    Holdings: h_C + D F(z, (h_P-h_C)/D).
     z uses the current actual-strategy surplus, before the current increment.
     """
 
     def __init__(self, scales, budget, q, seed=6501):
-        super().__init__(name="residual_combiner", autocast=False)
+        super().__init__(name="Novel_model_1", autocast=False)
         scales = np.asarray(scales, dtype="float64")
         if scales.shape != (2,) or not np.isfinite(scales).all() or np.any(scales <= 0):
             raise ValueError(

@@ -37,19 +37,19 @@
       "exact_forward_and_all_weight_arrays": true
     },
     {
-      "file": "sec53_theoretical/checkpoints/R_1.npz",
+      "file": "sec53_theoretical/checkpoints/Novel_model_1_seed_1.npz",
       "sha256": "369ef579fe2482c57e183088430946c8edf9d81e2fcc689585506d6949e6ae2f",
       "source_sha256": "3ad7f42fccb61959cdc9b07b535c1c5d394a95633c00120de3ea6aa81cb87fb9",
       "exact_forward_and_all_weight_arrays": true
     },
     {
-      "file": "sec53_theoretical/checkpoints/R_2.npz",
+      "file": "sec53_theoretical/checkpoints/Novel_model_1_seed_2.npz",
       "sha256": "d2792268c7d173abda3545cb9edafe0222485d720731d86a08d7214889940d7c",
       "source_sha256": "d8225209487d7b49a02300511e29b8c12daf75a90ff87ca138675b885722a878",
       "exact_forward_and_all_weight_arrays": true
     },
     {
-      "file": "sec53_theoretical/checkpoints/R_3.npz",
+      "file": "sec53_theoretical/checkpoints/Novel_model_1_seed_3.npz",
       "sha256": "c3f8bb76fc60d280e593b174305c833209161f474742a6bcbddf7b911e8f28dc",
       "source_sha256": "12c6cda6e5b9d328150ed4a846e4e03ef56868cd2b71ab75df88aa76780d9550",
       "exact_forward_and_all_weight_arrays": true
@@ -67,7 +67,7 @@
       "exact_forward_and_all_weight_arrays": true
     },
     {
-      "file": "sec55_sp500/checkpoints/R_1.npz",
+      "file": "sec55_sp500/checkpoints/Novel_model_1_seed_1.npz",
       "sha256": "97fc7cda1b3f1d69e3c2291d7c4149d7b2934463dc2e7f1cc2965a7921785126",
       "source_sha256": "bb8fb42ef2df0980b214eb24e81c741c68719ec1ef11cc9b5f426cdf2d283ccc",
       "exact_forward_and_all_weight_arrays": true

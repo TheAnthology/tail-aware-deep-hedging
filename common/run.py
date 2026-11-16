@@ -1,4 +1,4 @@
-"""Train experts, select residuals on validation data, then evaluate once.
+"""Train experts, select Novel_model_1 checkpoints on validation data, then evaluate once.
 
 Archived results are separate; this curated orchestration has smoke and parity
 coverage, not a new full-budget numerical reproduction. All output is new.
@@ -48,12 +48,12 @@ def _load_config(section, smoke):
             chunk=512,
             calibration_paths=256,
             validation_paths=512,
-            residual_pool_paths=512,
-            residual_updates=2,
+            policy_pool_paths=512,
+            policy_updates=2,
             validation_interval=1,
             test_paths=512,
             members=config["members"][:1],
-            residual_seeds=config["residual_seeds"][:1],
+            policy_seeds=config["policy_seeds"][:1],
         )
     return config
 
@@ -127,15 +127,15 @@ def _position_scale(cvar_holdings):
     return float(np.sqrt(np.mean(cvar_holdings**2)))
 
 
-def _train_residuals(
+def _train_novel_model_1(
     exp, config, train, validation, cvar_metrics, scale, budget, output_dir
 ):
     """Select only validation-feasible improvements over the CVaR fallback."""
     selections = []
-    for index, (network_seed, batch_seed) in enumerate(config["residual_seeds"], 1):
-        model = exp.residual(scale, budget, exp.q, network_seed)
+    for index, (network_seed, batch_seed) in enumerate(config["policy_seeds"], 1):
+        model = exp.novel_model_1(scale, budget, exp.q, network_seed)
         model.initialize()
-        step, optimizer, dual = exp.residual_step(model)
+        step, optimizer, dual = exp.policy_step(model)
         forward = exp.forward(model)
         fallback_feasible = cvar_metrics["cvar95"] <= budget
         selection = {
@@ -147,14 +147,14 @@ def _train_residuals(
             "validation": cvar_metrics,
         }
         rng = np.random.default_rng(batch_seed)
-        for update in range(1, config["residual_updates"] + 1):
-            indices = rng.integers(0, len(train["payoff"]), config["residual_batch"])
+        for update in range(1, config["policy_updates"] + 1):
+            indices = rng.integers(0, len(train["payoff"]), config["policy_batch"])
             diagnostics = step(*exp.tensors(train, indices))
             if not all(np.isfinite(value.numpy()).all() for value in diagnostics):
-                raise FloatingPointError("Nonfinite residual")
+                raise FloatingPointError("Nonfinite Novel_model_1 update")
             if (
                 update % config["validation_interval"] == 0
-                or update == config["residual_updates"]
+                or update == config["policy_updates"]
             ):
                 pnl, holdings, _, _ = exp.evaluate(model, validation, forward=forward)
                 candidate = metrics(pnl)
@@ -176,29 +176,29 @@ def _train_residuals(
                 )
                 if feasible and improves_probability:
                     selection = {
-                        "source": "learned_residual",
+                        "source": "learned_novel_model_1",
                         "update": update,
                         "soft_probability": candidate["soft_probability"],
                         "validation": candidate,
                     }
-                    model.save_weights(output_dir / f"R_{index}.selected.weights.h5")
-        model.save_weights(output_dir / f"R_{index}.final.weights.h5")
+                    model.save_weights(output_dir / f"Novel_model_1_seed_{index}.selected.weights.h5")
+        model.save_weights(output_dir / f"Novel_model_1_seed_{index}.final.weights.h5")
         tf.train.Checkpoint(model=model, optimizer=optimizer, dual=dual).write(
-            str(output_dir / f"R_{index}.adam")
+            str(output_dir / f"Novel_model_1_seed_{index}.adam")
         )
         selections.append(selection)
     return selections
 
 
-def _load_selected_residual(exp, scale, budget, output_dir, index):
-    model = exp.residual(scale, budget, exp.q, 0)
+def _load_selected_policy(exp, scale, budget, output_dir, index):
+    model = exp.novel_model_1(scale, budget, exp.q, 0)
     model.initialize()
-    model.load_weights(output_dir / f"R_{index}.selected.weights.h5")
+    model.load_weights(output_dir / f"Novel_model_1_seed_{index}.selected.weights.h5")
     return model
 
 
 def _evaluate_simulated(exp, models, raw, selections, scale, budget, output_dir):
-    """Evaluate the benchmark, CVaR policy and already selected residuals."""
+    """Evaluate the benchmark, CVaR policy and already selected Novel_model_1 checkpoints."""
     benchmark = exp.benchmark(raw)
     data = project(exp, models, raw)
     pnl_by_policy = {
@@ -206,11 +206,11 @@ def _evaluate_simulated(exp, models, raw, selections, scale, budget, output_dir)
         "CVaR": position_pnl(data, data["hc"], exp.q),
     }
     for index, selection in enumerate(selections, 1):
-        if selection["source"] == "learned_residual":
-            model = _load_selected_residual(exp, scale, budget, output_dir, index)
-            pnl_by_policy[f"Residual_{index}"] = exp.evaluate(model, data)[0]
+        if selection["source"] == "learned_novel_model_1":
+            model = _load_selected_policy(exp, scale, budget, output_dir, index)
+            pnl_by_policy[f"Novel_model_1_seed_{index}"] = exp.evaluate(model, data)[0]
         elif selection["source"] == "C_fallback":
-            pnl_by_policy[f"Residual_{index}"] = pnl_by_policy["CVaR"].copy()
+            pnl_by_policy[f"Novel_model_1_seed_{index}"] = pnl_by_policy["CVaR"].copy()
     return pnl_by_policy
 
 
@@ -225,11 +225,11 @@ def _evaluate_historical(exp, models, selections, scale, budget, output_dir):
         "CVaR": float(position_pnl(data, data["hc"], exp.q)[0]),
     }
     for index, selection in enumerate(selections, 1):
-        if selection["source"] == "learned_residual":
-            model = _load_selected_residual(exp, scale, budget, output_dir, index)
-            pnl_by_policy[f"Residual_{index}"] = float(exp.evaluate(model, data)[0][0])
+        if selection["source"] == "learned_novel_model_1":
+            model = _load_selected_policy(exp, scale, budget, output_dir, index)
+            pnl_by_policy[f"Novel_model_1_seed_{index}"] = float(exp.evaluate(model, data)[0][0])
         elif selection["source"] == "C_fallback":
-            pnl_by_policy[f"Residual_{index}"] = pnl_by_policy["CVaR"]
+            pnl_by_policy[f"Novel_model_1_seed_{index}"] = pnl_by_policy["CVaR"]
     return pnl_by_policy
 
 
@@ -288,7 +288,7 @@ def main(section):
         exp,
         models,
         exp.sample(
-            config["residual_pool_paths"],
+            config["policy_pool_paths"],
             np.random.default_rng(config["pool_seed"]),
             True,
         ),
@@ -302,7 +302,7 @@ def main(section):
             "premium": exp.q,
         },
     )
-    selections = _train_residuals(
+    selections = _train_novel_model_1(
         exp, config, train, validation, cvar_metrics, scale, budget, args.out
     )
     # Freeze checkpoint choices before drawing or inspecting final-test paths.

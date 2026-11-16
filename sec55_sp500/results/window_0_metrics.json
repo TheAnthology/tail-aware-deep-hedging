@@ -51,7 +51,7 @@
         "constraint_pass": true,
         "budget_excess": -0.04361162143929187
       },
-      "R": {
+      "Novel_model_1": {
         "samples": 100000,
         "mean_pnl": -0.06925945744860837,
         "mse": 1.0565164743022046,
@@ -87,7 +87,7 @@
         "constraint_pass": true,
         "budget_excess": -0.08233390611412528
       },
-      "R_final": {
+      "Novel_model_1_final": {
         "samples": 100000,
         "mean_pnl": -0.007411655141229557,
         "mse": 1.1805160962614984,
@@ -176,7 +176,7 @@
       "max_abs_holding": 0.9920405149459839,
       "pnl_original_index_points": 0.4440083887828658
     },
-    "R": {
+    "Novel_model_1": {
       "pnl": 0.43224077783756787,
       "holdings": [
         0.6050707125965396,
@@ -190,7 +190,7 @@
       "max_abs_holding": 1.0820520057491008,
       "pnl_original_index_points": 11.176189985581656
     },
-    "R_final": {
+    "Novel_model_1_final": {
       "pnl": 0.5442039601721387,
       "holdings": [
         0.6571700939271297,
@@ -219,5 +219,5 @@
       "pnl_original_index_points": 46.259145105615374
     }
   },
-  "note": "Internal Probability and unselected final Residual entries are diagnostics, not extra headline models."
+  "note": "Internal Probability and unselected final Novel_model_1 entries are diagnostics, not extra headline models."
 }

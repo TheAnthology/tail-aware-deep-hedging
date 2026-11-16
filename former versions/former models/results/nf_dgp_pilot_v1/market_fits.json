@@ -1,0 +1,172 @@
+{
+  "inner": {
+    "p": [
+      0.043469321344090546,
+      0.04733433246313256,
+      0.0,
+      0.38348309631801375,
+      0.7519334716878094,
+      6.999228719448504
+    ],
+    "state": {
+      "h0": 0.25324739262771745,
+      "epsilon0": 1.2642665896540006,
+      "h1": 0.2377595235975779
+    },
+    "fit": {
+      "parameters": [
+        0.043469321344090546,
+        0.04733433246313256,
+        0.0,
+        0.38348309631801375,
+        0.7519334716878094,
+        6.999228719448504
+      ],
+      "parameter_names": [
+        "mu_percent",
+        "omega_percent_squared",
+        "alpha",
+        "gamma",
+        "beta",
+        "nu"
+      ],
+      "initial_state": {
+        "h0": 0.25324739262771745,
+        "epsilon0": 1.2642665896540006,
+        "h1": 0.2377595235975779
+      },
+      "initial_sigma0_daily": 0.005032369150089423,
+      "calibration_observations": 949,
+      "fits": [
+        {
+          "success": true,
+          "message": "Optimization terminated successfully",
+          "nll": 1038.74765461875,
+          "parameters": [
+            0.043469321344090546,
+            0.04733433246313256,
+            0.0,
+            0.38348309631801375,
+            0.7519334716878094,
+            6.999228719448504
+          ],
+          "iterations": 16
+        },
+        {
+          "success": true,
+          "message": "Optimization terminated successfully",
+          "nll": 1038.7476546255848,
+          "parameters": [
+            0.04346900299496638,
+            0.047334353999439,
+            1.04884276118844e-10,
+            0.3834833013485534,
+            0.7519334138133673,
+            6.999196259671447
+          ],
+          "iterations": 17
+        },
+        {
+          "success": true,
+          "message": "Optimization terminated successfully",
+          "nll": 1038.7476546188925,
+          "parameters": [
+            0.043468812514458624,
+            0.047334173465345915,
+            0.0,
+            0.3834816726469795,
+            0.7519338461176152,
+            6.999238459371769
+          ],
+          "iterations": 19
+        }
+      ],
+      "student_t": "variance-standardized; explicit local convention, not specified by paper"
+    }
+  },
+  "full": {
+    "p": [
+      0.04757787436459961,
+      0.03062449045612318,
+      4.0399183775540547e-13,
+      0.38397061358951023,
+      0.7750002948253657,
+      5.505182108441372
+    ],
+    "state": {
+      "h0": 0.332707333606314,
+      "epsilon0": 0.7686874275597371,
+      "h1": 0.28847277209181654
+    },
+    "fit": {
+      "parameters": [
+        0.04757787436459961,
+        0.03062449045612318,
+        4.0399183775540547e-13,
+        0.38397061358951023,
+        0.7750002948253657,
+        5.505182108441372
+      ],
+      "parameter_names": [
+        "mu_percent",
+        "omega_percent_squared",
+        "alpha",
+        "gamma",
+        "beta",
+        "nu"
+      ],
+      "initial_state": {
+        "h0": 0.332707333606314,
+        "epsilon0": 0.7686874275597371,
+        "h1": 0.28847277209181654
+      },
+      "initial_sigma0_daily": 0.0057680788275327344,
+      "calibration_observations": 1187,
+      "fits": [
+        {
+          "success": true,
+          "message": "Optimization terminated successfully",
+          "nll": 1169.2241210933598,
+          "parameters": [
+            0.04757789244172406,
+            0.03062450301606986,
+            1.0368173004639226e-14,
+            0.38397142674006335,
+            0.7750002861065344,
+            5.505150492299334
+          ],
+          "iterations": 18
+        },
+        {
+          "success": true,
+          "message": "Optimization terminated successfully",
+          "nll": 1169.2241210933528,
+          "parameters": [
+            0.04757787436459961,
+            0.03062449045612318,
+            4.0399183775540547e-13,
+            0.38397061358951023,
+            0.7750002948253657,
+            5.505182108441372
+          ],
+          "iterations": 15
+        },
+        {
+          "success": true,
+          "message": "Optimization terminated successfully",
+          "nll": 1169.2241210935852,
+          "parameters": [
+            0.047577921251473795,
+            0.030624479699641674,
+            5.4269853275974075e-12,
+            0.38397125316864306,
+            0.7750004256778046,
+            5.505150128177002
+          ],
+          "iterations": 25
+        }
+      ],
+      "student_t": "variance-standardized; explicit local convention, not specified by paper"
+    }
+  }
+}

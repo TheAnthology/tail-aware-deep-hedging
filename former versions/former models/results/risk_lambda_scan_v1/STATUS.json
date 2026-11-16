@@ -1,0 +1,61 @@
+{
+  "execution": "PAUSED_AT_USER_REQUEST",
+  "training_processes_stopped": true,
+  "completed_candidates": [
+    "0.0",
+    "0.01",
+    "0.03",
+    "0.1",
+    "1.0"
+  ],
+  "partial_candidates": [
+    {
+      "folder": "results/risk_lambda_scan_v1/lambda_0p3",
+      "logged_updates": 12739,
+      "last_validation": {
+        "lambda": 0.3,
+        "updates": 10000,
+        "validation": {
+          "samples": 32768,
+          "mean_pnl": -0.015528668178498382,
+          "mse": 0.42222240255148186,
+          "probability_loss": 0.357269287109375,
+          "cvar50": 0.397510066918607,
+          "cvar95": 2.037815164672633,
+          "cvar99": 3.501114571724109,
+          "minimum_pnl": -8.395039877153827,
+          "maximum_pnl": 6.004033186792411,
+          "pnl_quantiles": {
+            "0": -8.395039877153827,
+            "0.001": -4.740316841933248,
+            "0.01": -2.5261722707861454,
+            "0.05": -1.17933096072146,
+            "0.25": -0.15390484105074004,
+            "0.5": 0.1179795953011189,
+            "0.75": 0.284479346651973,
+            "0.95": 0.6681881433464666,
+            "0.99": 1.2346358978086434,
+            "0.999": 2.0786874317036994,
+            "1": 6.004033186792411
+          },
+          "tail_probabilities": {
+            "0.0": 0.357269287109375,
+            "0.5": 0.130584716796875,
+            "1.0": 0.063323974609375,
+            "2.0": 0.018463134765625
+          },
+          "soft_tail_probability_a0_tau01": 0.40062834619250604
+        },
+        "elapsed_seconds": 90.4870157080004
+      },
+      "intermediate_model_checkpoint_saved": false,
+      "exact_resume_available": false
+    }
+  ],
+  "not_started_lambdas": [
+    3.0
+  ],
+  "new_million_test_started": false,
+  "final_weight_selection_done": false,
+  "note": "Preserved existing files; interrupted candidate has scalar/validation logs but no intermediate saved model. Completed new candidates retain raw/calibrated weights and optimizer bundles."
+}

@@ -19,21 +19,26 @@
       "P_3.npz"
     ]
   },
-  "residuals": [
+  "novel_model_1": [
     {
-      "name": "Residual_1",
-      "weights": "R_1.npz",
+      "name": "Novel_model_1_seed_1",
+      "weights": "Novel_model_1_seed_1.npz",
       "selection": "validation-selected, all three seeds retained"
     },
     {
-      "name": "Residual_2",
-      "weights": "R_2.npz",
+      "name": "Novel_model_1_seed_2",
+      "weights": "Novel_model_1_seed_2.npz",
       "selection": "validation-selected, all three seeds retained"
     },
     {
-      "name": "Residual_3",
-      "weights": "R_3.npz",
+      "name": "Novel_model_1_seed_3",
+      "weights": "Novel_model_1_seed_3.npz",
       "selection": "validation-selected, all three seeds retained"
     }
-  ]
+  ],
+  "paper_deep_hedge": {
+    "weights": "paper_semi_recurrent.weights.h5",
+    "source_run": "section52_calibrated_million_v1",
+    "scope": "Heston CVaR50, independently calibrated BatchNorm"
+  }
 }

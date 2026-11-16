@@ -1,0 +1,32 @@
+{
+  "preferences": {
+    "C": [
+      {
+        "member": 1,
+        "calibrated_weights": "results/preference_moe_v1/experts/C_1/calibrated.weights.h5"
+      },
+      {
+        "member": 2,
+        "calibrated_weights": "results/preference_moe_v1/experts/C_2/calibrated.weights.h5"
+      },
+      {
+        "member": 3,
+        "calibrated_weights": "results/preference_moe_v1/experts/C_3/calibrated.weights.h5"
+      }
+    ],
+    "P": [
+      {
+        "member": 1,
+        "calibrated_weights": "results/preference_moe_v1/experts/P_1/calibrated.weights.h5"
+      },
+      {
+        "member": 2,
+        "calibrated_weights": "results/preference_moe_v1/experts/P_2/calibrated.weights.h5"
+      },
+      {
+        "member": 3,
+        "calibrated_weights": "results/preference_moe_v1/experts/P_3/calibrated.weights.h5"
+      }
+    ]
+  }
+}

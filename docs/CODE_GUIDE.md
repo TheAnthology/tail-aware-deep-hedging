@@ -6,7 +6,7 @@ Read the workflow first, then follow the adapter for the market you need.
 ## Suggested reading order
 
 1. [`common/run.py`](../common/run.py): `main` connects data generation,
-   expert training, residual selection, and final evaluation. The private
+   expert training, Novel_model_1 selection, and final evaluation. The private
    helpers keep these stages separate.
 2. [`sec53_theoretical/experiment.py`](../sec53_theoretical/experiment.py) or
    [`sec55_sp500/experiment.py`](../sec55_sp500/experiment.py): each `Experiment`
@@ -16,9 +16,11 @@ Read the workflow first, then follow the adapter for the market you need.
 4. [`sec53_theoretical/experts.py`](../sec53_theoretical/experts.py) or
    [`sec55_sp500/models.py`](../sec55_sp500/models.py): the expert predicts
    total holdings at each decision date.
-5. [`sec53_theoretical/residual.py`](../sec53_theoretical/residual.py) or
-   `StockResidual` in the S&P models module: the residual adjusts CVaR holdings
+5. [`sec53_theoretical/novel_model_1.py`](../sec53_theoretical/novel_model_1.py) or
+   `Novel_model_1` in the S&P models module: the policy adjusts CVaR holdings
    using current market state and the combined strategy's running surplus.
+
+The semi-recurrent paper comparison lives in each section’s `paper_hedge.py`. It reads its own previous holding at every decision date. The S&P adapter restores the original index level for this checkpoint.
 
 For inference only, start with [`common/replay.py`](../common/replay.py).
 It loads released weights and evaluates them without training or recalibrating
@@ -33,8 +35,8 @@ BatchNorm.
 3. `_train_experts`: train paired CVaR/probability experts, calibrate each
    member's BatchNorm statistics, and freeze its inference state.
 4. Cache expert holdings on validation paths; establish the CVaR95 budget.
-5. Generate the residual's training pool; fit position scales on that pool.
-6. `_train_residuals`: train each seed and select checkpoints on validation.
+5. Generate the policy's training pool; fit position scales on that pool.
+6. `_train_novel_model_1`: train each seed and select checkpoints on validation.
 7. Save `selection_before_test.json` before drawing final-test paths.
 8. `_evaluate_simulated` and `_evaluate_historical`: evaluate the frozen
    choices and save P&L and metrics.
@@ -62,11 +64,11 @@ The compact dictionary keys are shared across adapters and tensor helpers.
 `C` and `P` identify the two expert preferences. `q` is the fixed option premium,
 shared by the compared policies. Heston features use instantaneous variance;
 S&P features use annualized daily variance, `252 * sigma_daily**2`.
-Features are `float32`; residual accounting and evaluation use `float64`.
+Features are `float32`; Novel_model_1 accounting and evaluation use `float64`.
 
 `project` averages **holdings within a preference**. Every member retains its own
 weights and BatchNorm buffers. The probability expert supplies an internal
-direction for the residual; it is not a separately reported main policy.
+direction for the policy; it is not a separately reported main policy.
 
 ## Holdings and P&L
 
@@ -79,7 +81,7 @@ terminal_pnl = q + sum_dates(trading_gain) - payoff
 loss = -terminal_pnl
 ```
 
-The residual builds its state before using the current interval's change:
+The policy builds its state before using the current interval's change:
 
 ```text
 surplus[k] = q + cumulative_gain_before_k - liability[k]
@@ -105,7 +107,7 @@ is `eta + mean(relu(liability_loss - eta)) / (1 - alpha) - q`, where
 0.75 for S&P. The probability expert minimizes `mean(sigmoid(loss / 0.1))` and
 does not optimize `eta`.
 
-The residual uses a fixed CVaR95 budget:
+The policy uses a fixed CVaR95 budget:
 
 ```text
 risk_excess = CVaR95(loss) / budget - 1
@@ -117,7 +119,7 @@ Positive `risk_excess` means the budget is exceeded. The dual update raises the
 penalty in that case. The normalized correction RMS returned by the training
 step is a diagnostic; it does not enter the objective.
 
-A residual checkpoint replaces the current selection only if its validation
+A Novel_model_1 checkpoint replaces the current selection only if its validation
 CVaR95 meets the budget and its soft loss probability improves by more than
 `1e-12`. If no learned checkpoint improves on a feasible CVaR fallback, the
 fallback remains selected. If neither is feasible, the runner records

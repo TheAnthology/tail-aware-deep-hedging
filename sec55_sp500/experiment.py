@@ -2,9 +2,12 @@
 
 import numpy as np
 from . import market, models, training
+from .paper_hedge import PaperDeepHedge, paper_features
 
 
 class Experiment:
+    paper_model = staticmethod(PaperDeepHedge)
+
     def __init__(self, window=0, cache_dir=None):
         row, self.history, self.returns = market.window_data(window)
         self.params, self.state, fit = market.fit_garch(self.returns[:1187])
@@ -22,6 +25,11 @@ class Experiment:
         data = models.market_data(prices, vol)
         data["_raw"] = (prices, vol)
         return data
+
+    def paper_holdings(self, model, data):
+        # The paper network was trained on absolute index levels. Holdings are shares.
+        prices, _ = data["_raw"]
+        return models.predict(model, paper_features(prices, self.metadata["original_spot"]))
 
     def benchmark(self, data):
         prices, vol = data["_raw"]
@@ -48,10 +56,10 @@ class Experiment:
     expert_step = staticmethod(training.make_step)
     calibrate = staticmethod(models.calibrate)
     predict = staticmethod(models.predict)
-    residual = staticmethod(
-        lambda scale, budget, q, seed: models.StockResidual(scale, budget, q, seed)
+    novel_model_1 = staticmethod(
+        lambda scale, budget, q, seed: models.Novel_model_1(scale, budget, q, seed)
     )
-    residual_step = staticmethod(models.make_res_step)
-    forward = staticmethod(models.make_res_forward)
-    evaluate = staticmethod(models.evaluate_res)
-    tensors = staticmethod(models.residual_tensors)
+    policy_step = staticmethod(models.make_policy_step)
+    forward = staticmethod(models.make_policy_forward)
+    evaluate = staticmethod(models.evaluate_policy)
+    tensors = staticmethod(models.policy_tensors)

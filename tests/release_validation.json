@@ -4,7 +4,7 @@
       "paths": 100000,
       "maximum_absolute_pnl_gap": 0.0
     },
-    "Residual_1": {
+    "Novel_model_1_seed_1": {
       "paths": 100000,
       "maximum_absolute_pnl_gap": 0.0
     }
@@ -14,15 +14,15 @@
       "paths": 512,
       "maximum_absolute_pnl_gap": 0.0
     },
-    "Residual_1": {
+    "Novel_model_1_seed_1": {
       "paths": 512,
       "maximum_absolute_pnl_gap": 0.0
     },
-    "Residual_2": {
+    "Novel_model_1_seed_2": {
       "paths": 512,
       "maximum_absolute_pnl_gap": 0.0
     },
-    "Residual_3": {
+    "Novel_model_1_seed_3": {
       "paths": 512,
       "maximum_absolute_pnl_gap": 0.0
     }

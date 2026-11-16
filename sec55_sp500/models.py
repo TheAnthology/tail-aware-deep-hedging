@@ -1,11 +1,11 @@
-"""Stock-only Simpler CVaR75 / Probability experts and residual policy."""
+"""Stock-only Simpler CVaR75 / Probability experts and Novel_model_1."""
 
 import numpy as np
 import tensorflow as tf
 from scipy.special import ndtr
 
 HEDGE_DAYS = np.array([0, 5, 10, 15, 20, 25], dtype=int)
-RESIDUAL_KEYS = ["f", "changes", "hc", "hp", "liability", "payoff"]
+POLICY_KEYS = ["f", "changes", "hc", "hp", "liability", "payoff"]
 
 
 def market_data(prices, vol, strike=100.0):
@@ -176,7 +176,7 @@ def position_pnl(data, holdings, q):
     )
 
 
-class StockResidual(tf.keras.Model):
+class Novel_model_1(tf.keras.Model):
     """Add a learned stock correction to the frozen CVaR policy.
 
     Inputs are current log spot, variance, actual strategy surplus, time, and
@@ -184,7 +184,7 @@ class StockResidual(tf.keras.Model):
     """
 
     def __init__(self, scale, budget, q, seed=9501):
-        super().__init__(name="sp500_stock_residual", autocast=False)
+        super().__init__(name="Novel_model_1", autocast=False)
         if not np.isfinite(scale) or scale <= 0:
             raise ValueError(
                 "Strictly positive finite training-derived stock holding scale required"
@@ -275,17 +275,17 @@ class StockResidual(tf.keras.Model):
         )
 
 
-def residual_tensors(data, ix=None):
+def policy_tensors(data, ix=None):
     return tuple(
         tf.convert_to_tensor(
             data[k] if ix is None else data[k][ix],
             dtype=tf.float32 if k == "f" else tf.float64,
         )
-        for k in RESIDUAL_KEYS
+        for k in POLICY_KEYS
     )
 
 
-def make_res_forward(model):
+def make_policy_forward(model):
     @tf.function(reduce_retracing=True)
     def forward(f, changes, hc, hp, liability, payoff):
         return model((f, changes, hc, hp, liability, payoff))
@@ -293,19 +293,19 @@ def make_res_forward(model):
     return forward
 
 
-def evaluate_res(model, data, chunk=2048, forward=None):
+def evaluate_policy(model, data, chunk=2048, forward=None):
     if forward is None:
-        forward = make_res_forward(model)
+        forward = make_policy_forward(model)
     rows = [[], [], [], []]
     for lo in range(0, len(data["payoff"]), chunk):
-        values = forward(*residual_tensors(data, slice(lo, lo + chunk)))
+        values = forward(*policy_tensors(data, slice(lo, lo + chunk)))
         for target, value in zip(rows, values):
             target.append(value.numpy())
     return tuple(np.concatenate(v) for v in rows)
 
 
-def make_res_step(model):
-    """Build the residual's CVaR95 primal-dual update.
+def make_policy_step(model):
+    """Build the policy's CVaR95 primal-dual update.
 
     Diagnostics: soft loss probability, CVaR95, relative budget excess, updated
     dual multiplier, gradient norm, and normalized correction RMS.
@@ -328,10 +328,10 @@ def make_res_step(model):
             )
         gradients = tape.gradient(objective, model.trainable_variables)
         if any(gradient is None for gradient in gradients):
-            raise RuntimeError("Disconnected residual parameter")
-        tf.debugging.check_numerics(objective, "residual objective")
+            raise RuntimeError("Disconnected policy parameter")
+        tf.debugging.check_numerics(objective, "policy objective")
         for gradient in gradients:
-            tf.debugging.check_numerics(gradient, "residual gradient")
+            tf.debugging.check_numerics(gradient, "policy gradient")
         clipped, norm = tf.clip_by_global_norm(gradients, 10.0)
         optimizer.apply_gradients(zip(clipped, model.trainable_variables))
         # Projected ascent raises the penalty when the risk budget is exceeded.

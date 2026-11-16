@@ -25,7 +25,7 @@
       "mean_normalized_pnl": -0.035443310089940526,
       "normalized_cvar75": 0.22124591684315292
     },
-    "R": {
+    "Novel_model_1": {
       "mean_index_pnl": 6.032870659856342,
       "mean_normalized_pnl": 0.23626733924358784,
       "normalized_cvar75": 0.01493693928930595
@@ -43,11 +43,11 @@
         "normalized_pnl": 0.017172089198689733,
         "index_pnl": 0.4440083887828658
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": 0.43224077783756787,
         "index_pnl": 11.176189985581658
       },
-      "residual_source": "learned_residual"
+      "novel_model_1_source": "learned_novel_model_1"
     },
     {
       "window_id": 1,
@@ -60,11 +60,11 @@
         "normalized_pnl": -0.24034938561994856,
         "index_pnl": -6.20654230263513
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": 0.16235773133072628,
         "index_pnl": 4.192563775708633
       },
-      "residual_source": "learned_residual"
+      "novel_model_1_source": "learned_novel_model_1"
     },
     {
       "window_id": 2,
@@ -77,11 +77,11 @@
         "normalized_pnl": -0.21025220868160588,
         "index_pnl": -5.44790780881661
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": 0.14520263702213088,
         "index_pnl": 3.7623889187844544
       },
-      "residual_source": "learned_residual"
+      "novel_model_1_source": "learned_novel_model_1"
     },
     {
       "window_id": 3,
@@ -94,11 +94,11 @@
         "normalized_pnl": -0.09456780993369396,
         "index_pnl": -2.43306905807995
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": -0.09456780993369396,
         "index_pnl": -2.43306905807995
       },
-      "residual_source": "frozen_C_fallback"
+      "novel_model_1_source": "frozen_C_fallback"
     },
     {
       "window_id": 4,
@@ -111,11 +111,11 @@
         "normalized_pnl": -0.20502639561265568,
         "index_pnl": -5.258886001180216
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": 0.1956913863246017,
         "index_pnl": 5.019444881810491
       },
-      "residual_source": "learned_residual"
+      "novel_model_1_source": "learned_novel_model_1"
     },
     {
       "window_id": 5,
@@ -128,11 +128,11 @@
         "normalized_pnl": 0.020384897514083455,
         "index_pnl": 0.5213722709673637
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": 0.42872378720231685,
         "index_pnl": 10.965210612266885
       },
-      "residual_source": "learned_residual"
+      "novel_model_1_source": "learned_novel_model_1"
     },
     {
       "window_id": 6,
@@ -145,11 +145,11 @@
         "normalized_pnl": 0.22842118418123514,
         "index_pnl": 5.826201847789589
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": 0.5410468371274479,
         "index_pnl": 13.800156467587422
       },
-      "residual_source": "learned_residual"
+      "novel_model_1_source": "learned_novel_model_1"
     },
     {
       "window_id": 7,
@@ -162,11 +162,11 @@
         "normalized_pnl": 0.17307964372871054,
         "index_pnl": 4.386842169021274
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": 0.17307964372871054,
         "index_pnl": 4.386842169021274
       },
-      "residual_source": "frozen_C_fallback"
+      "novel_model_1_source": "frozen_C_fallback"
     },
     {
       "window_id": 8,
@@ -179,11 +179,11 @@
         "normalized_pnl": -0.027919258873583708,
         "index_pnl": -0.6970992478281353
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": 0.39427425859670695,
         "index_pnl": 9.844397745307365
       },
-      "residual_source": "learned_residual"
+      "novel_model_1_source": "learned_novel_model_1"
     },
     {
       "window_id": 9,
@@ -196,11 +196,11 @@
         "normalized_pnl": -0.015375856800636356,
         "index_pnl": -0.3854188994248116
       },
-      "R": {
+      "Novel_model_1": {
         "normalized_pnl": -0.015375856800636356,
         "index_pnl": -0.3854188994248116
       },
-      "residual_source": "frozen_C_fallback"
+      "novel_model_1_source": "frozen_C_fallback"
     }
   ]
 }

@@ -1,11 +1,14 @@
 """Heston adapter: project Section 5.3, originating from paper Section 5.2."""
 
 import numpy as np
-from . import market, experts, residual as engine
+from . import market, experts, novel_model_1 as engine
 from .liability import HestonLiability
+from .paper_hedge import PaperDeepHedge
 
 
 class Experiment:
+    paper_model = staticmethod(PaperDeepHedge)
+
     def __init__(self, window=0, cache_dir="runs/cache/heston"):
         self.liability = HestonLiability(cache_dir)
         self.q = self.liability.q
@@ -29,6 +32,9 @@ class Experiment:
             data["liability"] = self.liability.price(raw)
         return data
 
+    def paper_holdings(self, model, data):
+        return experts.predict(model, data["f"])
+
     def benchmark(self, data):
         return market.pnl(
             data["_raw"], self.liability.grid.hedge_paths(data["_raw"]), self.q
@@ -41,10 +47,10 @@ class Experiment:
     expert_step = staticmethod(experts.make_step)
     calibrate = staticmethod(experts.calibrate)
     predict = staticmethod(experts.predict)
-    residual = staticmethod(
-        lambda scale, budget, q, seed: engine.ResidualCombiner(scale, budget, q, seed)
+    novel_model_1 = staticmethod(
+        lambda scale, budget, q, seed: engine.Novel_model_1(scale, budget, q, seed)
     )
-    residual_step = staticmethod(engine.make_step)
+    policy_step = staticmethod(engine.make_step)
     forward = staticmethod(engine.make_forward)
     evaluate = staticmethod(engine.evaluate)
     tensors = staticmethod(engine.tensors)

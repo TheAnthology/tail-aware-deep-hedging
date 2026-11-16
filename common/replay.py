@@ -29,6 +29,11 @@ def main():
         0, args.cache_dir
     )
     np.testing.assert_allclose(exp.q, spec["q"], atol=1e-10, rtol=0)
+    paper_model = exp.paper_model()
+    load_weights(
+        paper_model,
+        root / args.section / "checkpoints" / spec["paper_deep_hedge"]["weights"],
+    )
     experts = {"C": [], "P": []}
     for preference in experts:
         for name in spec["experts"][preference]:
@@ -37,18 +42,18 @@ def main():
             load_weights(model, root / args.section / "checkpoints" / name)
             model.trainable = False
             experts[preference].append(model)
-    residuals = []
-    for row in spec["residuals"]:
-        model = exp.residual(spec["scale"], spec["budget"], spec["q"], 0)
+    selected_policies = []
+    for row in spec["novel_model_1"]:
+        model = exp.novel_model_1(spec["scale"], spec["budget"], spec["q"], 0)
         load_weights(model, root / args.section / "checkpoints" / row["weights"])
-        residuals.append((row["name"], model, exp.forward(model)))
+        selected_policies.append((row["name"], model, exp.forward(model)))
     total = spec["test_paths"] if args.full else 512
     # Both archived evaluations generated market paths in chunks of 8192.
     # Chunk boundaries matter for assignment of random draws to paths/dates.
     chunk = 8192
     rng = np.random.default_rng(spec["test_seed"])
-    arrays = {"CVaR": [], "benchmark": []}
-    arrays.update({name: [] for name, _, _ in residuals})
+    arrays = {"CVaR": [], "benchmark": [], "paper_deep_hedge": []}
+    arrays.update({name: [] for name, _, _ in selected_policies})
     seen = 0
     while seen < total:
         generated = min(chunk, spec["test_paths"] - seen)
@@ -56,9 +61,13 @@ def main():
         take = min(generated, total - seen)
         benchmark = exp.benchmark(raw)[:take]
         data = project(exp, experts, raw)
+        paper_holdings = exp.paper_holdings(paper_model, raw)
+        arrays["paper_deep_hedge"].append(
+            position_pnl(data, paper_holdings, exp.q)[:take]
+        )
         arrays["benchmark"].append(benchmark)
         arrays["CVaR"].append(position_pnl(data, data["hc"], exp.q)[:take])
-        for name, model, forward in residuals:
+        for name, model, forward in selected_policies:
             arrays[name].append(exp.evaluate(model, data, forward=forward)[0][:take])
         seen += take
     arrays = {name: np.concatenate(parts) for name, parts in arrays.items()}
