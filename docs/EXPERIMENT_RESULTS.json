@@ -1,0 +1,418 @@
+{
+  "sp500_figure13": {
+    "complete": true,
+    "contracts": 300,
+    "mean_pnl": {
+      "paper_hedge": 5.387721529301829,
+      "black_scholes": 3.419889787925129
+    },
+    "reported_mean_pnl": {
+      "paper_hedge": 4.3,
+      "black_scholes": 3.2
+    },
+    "difference": {
+      "paper_hedge": 1.0877215293018292,
+      "black_scholes": 0.21988978792512892
+    }
+  },
+  "sp500_original_novel_1_2": {
+    "matched_windows": 300,
+    "complete_300_pair_comparison": true,
+    "units": "original index points",
+    "policies": {
+      "Novel_model_1": {
+        "mean_pnl": 3.1527155179088835,
+        "median_pnl": 6.082279624724066,
+        "probability_loss": 0.3333333333333333,
+        "cvar75_loss": 21.2984572702004,
+        "cvar95_loss": 57.19001881796469,
+        "cvar99_loss": 90.47863172382897,
+        "mean_squared_error": 408.80919273977787
+      },
+      "Novel_model_2": {
+        "mean_pnl": 3.2108835724830924,
+        "median_pnl": 5.514534497303467,
+        "probability_loss": 0.33666666666666667,
+        "cvar75_loss": 19.867526033670174,
+        "cvar95_loss": 55.51046229690393,
+        "cvar99_loss": 101.4449398969221,
+        "mean_squared_error": 400.5343349696874
+      },
+      "Figure13_semi_recurrent": {
+        "mean_pnl": 5.387721529301829,
+        "median_pnl": 5.1565161116090685,
+        "probability_loss": 0.33,
+        "cvar75_loss": 12.488409238318164,
+        "cvar95_loss": 31.14184995872599,
+        "cvar99_loss": 56.586528883658126,
+        "mean_squared_error": 271.4841023433233
+      },
+      "Black\u2013Scholes": {
+        "mean_pnl": 3.419889787925129,
+        "median_pnl": 4.16170041083839,
+        "probability_loss": 0.3333333333333333,
+        "cvar75_loss": 16.871581701275908,
+        "cvar95_loss": 46.10826665964253,
+        "cvar99_loss": 71.37594815077493,
+        "mean_squared_error": 308.2140909457402
+      }
+    },
+    "novel2_minus_novel1": {
+      "mean": 0.05816805457420922,
+      "wins": 142
+    },
+    "novel1_deployment": {
+      "deployments": {
+        "C_fallback": 66,
+        "learned_novel_model_1": 234
+      },
+      "scored": 300,
+      "simulated_cvar95_constraint_pass_count": 222
+    },
+    "novel2_deployment": {
+      "deployments": {
+        "C_fallback": 75,
+        "learned_novel_model_2": 225
+      },
+      "scored": 300,
+      "simulated_cvar95_constraint_pass_count": 234
+    }
+  },
+  "sp500_aligned_novel_1_3_full_budget_partial": {
+    "budget": "full",
+    "processed": 2,
+    "scored": 2,
+    "complete_300": false,
+    "invalid_risk_budget_origins": [],
+    "historical_units": "original index points",
+    "outcomes": [
+      {
+        "origin": 0,
+        "status": "COMPLETE",
+        "figure13_pnl": 1.5682672018399586,
+        "figure13_black_scholes_pnl": 6.0945129647538465,
+        "risk_budget": 3.221797666742137,
+        "seconds": 1609.7200343670556,
+        "simpler_cvar75_pnl": 1.0096872122057086,
+        "Novel_model_1": {
+          "historical_pnl": 1.0096872122057086,
+          "deployment": "C_fallback",
+          "selected_update": 0,
+          "validation": {
+            "paths": 32768,
+            "mean_pnl": -0.13006416922066222,
+            "mse": 2.2568814194553766,
+            "probability_loss": 0.498077392578125,
+            "soft_probability": 0.4939419591358578,
+            "cvar50": 0.6324130670792596,
+            "cvar75": 1.1407647382325337,
+            "cvar95": 3.221797666742137,
+            "pnl_quantiles": {
+              "0": -186.36961304709686,
+              "0.01": -3.9386784937457553,
+              "0.05": -1.4266543917584678,
+              "0.5": 0.0021333255797661987,
+              "0.95": 0.7845319620283825,
+              "0.99": 1.0219411087806942,
+              "1": 34.58376618342923
+            }
+          },
+          "simulated_test": {
+            "paths": 100000,
+            "mean_pnl": -0.12709091019705093,
+            "mse": 1.0602539639401392,
+            "probability_loss": 0.50032,
+            "soft_probability": 0.49705982658719566,
+            "cvar50": 0.6153047731769528,
+            "cvar75": 1.102983187682145,
+            "cvar95": 3.0400406541182896,
+            "pnl_quantiles": {
+              "0": -44.41516508631016,
+              "0.01": -3.7927348892031065,
+              "0.05": -1.4079362831495155,
+              "0.5": -0.00027268847093187,
+              "0.95": 0.7723653739381431,
+              "0.99": 1.0094504653254854,
+              "1": 98.66785515613876
+            },
+            "constraint_pass": true
+          }
+        },
+        "Novel_model_3": {
+          "historical_pnl": 1.0096872122057086,
+          "deployment": "C_fallback",
+          "selected_update": 0,
+          "validation": {
+            "paths": 32768,
+            "mean_pnl": -0.13006416922066222,
+            "mse": 2.2568814194553766,
+            "probability_loss": 0.498077392578125,
+            "soft_probability": 0.4939419591358578,
+            "cvar50": 0.6324130670792596,
+            "cvar75": 1.1407647382325337,
+            "cvar95": 3.221797666742137,
+            "pnl_quantiles": {
+              "0": -186.36961304709686,
+              "0.01": -3.9386784937457553,
+              "0.05": -1.4266543917584678,
+              "0.5": 0.0021333255797661987,
+              "0.95": 0.7845319620283825,
+              "0.99": 1.0219411087806942,
+              "1": 34.58376618342923
+            }
+          },
+          "simulated_test": {
+            "paths": 100000,
+            "mean_pnl": -0.12709091019705093,
+            "mse": 1.0602539639401392,
+            "probability_loss": 0.50032,
+            "soft_probability": 0.49705982658719566,
+            "cvar50": 0.6153047731769528,
+            "cvar75": 1.102983187682145,
+            "cvar95": 3.0400406541182896,
+            "pnl_quantiles": {
+              "0": -44.41516508631016,
+              "0.01": -3.7927348892031065,
+              "0.05": -1.4079362831495155,
+              "0.5": -0.00027268847093187,
+              "0.95": 0.7723653739381431,
+              "0.99": 1.0094504653254854,
+              "1": 98.66785515613876
+            },
+            "constraint_pass": true
+          }
+        },
+        "projection": {
+          "updates": 5000,
+          "predicted_breaches_before": 2319,
+          "predicted_breaches_after": 1635,
+          "projected_steps": 2319,
+          "bounded_recovery_steps": 1635,
+          "mean_positive_excess_before": 0.05123901013296006,
+          "mean_positive_excess_after": 0.028970390111869766
+        },
+        "black_scholes_pnl": 6.094520209857385
+      },
+      {
+        "origin": 1,
+        "status": "COMPLETE",
+        "figure13_pnl": -4.428437769601587,
+        "figure13_black_scholes_pnl": 1.0639550815270837,
+        "risk_budget": 3.1642746016158916,
+        "seconds": 1617.3126519080251,
+        "simpler_cvar75_pnl": -5.072259068642649,
+        "Novel_model_1": {
+          "historical_pnl": 5.799424776124593,
+          "deployment": "learned_novel_model_1",
+          "selected_update": 4000,
+          "validation": {
+            "paths": 32768,
+            "mean_pnl": -0.19861284297294413,
+            "mse": 1.0144059070402034,
+            "probability_loss": 0.427520751953125,
+            "soft_probability": 0.4521195057894818,
+            "cvar50": 0.7578828329150651,
+            "cvar75": 1.39398483029849,
+            "cvar95": 3.1292382625356994,
+            "pnl_quantiles": {
+              "0": -38.21964739715102,
+              "0.01": -3.6556461867840366,
+              "0.05": -1.8254140921358961,
+              "0.5": 0.10332240280805921,
+              "0.95": 0.6110630619091626,
+              "0.99": 0.8293051143072998,
+              "1": 2.526268024624259
+            }
+          },
+          "simulated_test": {
+            "paths": 100000,
+            "mean_pnl": -0.19750787334736436,
+            "mse": 1.049625759152024,
+            "probability_loss": 0.42935,
+            "soft_probability": 0.4531759605312265,
+            "cvar50": 0.7545760374148744,
+            "cvar75": 1.385340555322532,
+            "cvar95": 3.0917760050821674,
+            "pnl_quantiles": {
+              "0": -73.48080494649889,
+              "0.01": -3.6731234276762628,
+              "0.05": -1.804556647396936,
+              "0.5": 0.1004552997442123,
+              "0.95": 0.6072870595077784,
+              "0.99": 0.823618268973879,
+              "1": 10.223443175088974
+            },
+            "constraint_pass": true
+          }
+        },
+        "Novel_model_3": {
+          "historical_pnl": -2.4855415782412504,
+          "deployment": "learned_novel_model_3",
+          "selected_update": 4500,
+          "validation": {
+            "paths": 32768,
+            "mean_pnl": -0.2633379327959987,
+            "mse": 0.9545529918395338,
+            "probability_loss": 0.58905029296875,
+            "soft_probability": 0.5798159807238689,
+            "cvar50": 0.7445090896312205,
+            "cvar75": 1.2942491619425514,
+            "cvar95": 3.1359162210048335,
+            "pnl_quantiles": {
+              "0": -42.98439304038921,
+              "0.01": -3.7435963382385764,
+              "0.05": -1.729932202799952,
+              "0.5": -0.06973531429071866,
+              "0.95": 0.5740943361113676,
+              "0.99": 0.7985397155535412,
+              "1": 3.320463293647487
+            }
+          },
+          "simulated_test": {
+            "paths": 100000,
+            "mean_pnl": -0.2612149270919349,
+            "mse": 0.9704327965226897,
+            "probability_loss": 0.58965,
+            "soft_probability": 0.58077035922659,
+            "cvar50": 0.7397715701783639,
+            "cvar75": 1.2817075759715681,
+            "cvar95": 3.0789236876010615,
+            "pnl_quantiles": {
+              "0": -69.76193858128104,
+              "0.01": -3.6892781134843684,
+              "0.05": -1.7200282114551113,
+              "0.5": -0.07070286233286627,
+              "0.95": 0.5727047175219133,
+              "0.99": 0.8020596474475195,
+              "1": 13.950982548474233
+            },
+            "constraint_pass": true
+          }
+        },
+        "projection": {
+          "updates": 5000,
+          "predicted_breaches_before": 2395,
+          "predicted_breaches_after": 1599,
+          "projected_steps": 2395,
+          "bounded_recovery_steps": 1599,
+          "mean_positive_excess_before": 0.051837077465882224,
+          "mean_positive_excess_after": 0.023708376848632456
+        },
+        "black_scholes_pnl": 1.0639589045043816
+      }
+    ],
+    "matched_historical_metrics": {
+      "Novel_model_1": {
+        "mean_pnl": 3.404555994165151,
+        "median_pnl": 3.404555994165151,
+        "probability_loss": 0.0,
+        "cvar75_loss": -1.0096872122057086,
+        "cvar95_loss": -1.0096872122057086,
+        "cvar99_loss": -1.0096872122057086,
+        "mean_squared_error": 17.32639800020976
+      },
+      "Novel_model_3": {
+        "mean_pnl": -0.7379271830177709,
+        "median_pnl": -0.7379271830177709,
+        "probability_loss": 0.5,
+        "cvar75_loss": 2.4855415782412504,
+        "cvar95_loss": 2.4855415782412504,
+        "cvar99_loss": 2.4855415782412504,
+        "mean_squared_error": 3.598692601828871
+      },
+      "Simpler_CVaR75": {
+        "mean_pnl": -2.03128592821847,
+        "median_pnl": -2.03128592821847,
+        "probability_loss": 0.5,
+        "cvar75_loss": 5.072259068642649,
+        "cvar95_loss": 5.072259068642649,
+        "cvar99_loss": 5.072259068642649,
+        "mean_squared_error": 13.373640162959664
+      },
+      "Figure13_semi_recurrent": {
+        "mean_pnl": -1.430085283880814,
+        "median_pnl": -1.430085283880814,
+        "probability_loss": 0.5,
+        "cvar75_loss": 4.428437769601587,
+        "cvar95_loss": 4.428437769601587,
+        "cvar99_loss": 4.428437769601587,
+        "mean_squared_error": 11.035261547800404
+      },
+      "Black_Scholes": {
+        "mean_pnl": 3.579239557180883,
+        "median_pnl": 3.579239557180883,
+        "probability_loss": 0.0,
+        "cvar75_loss": -1.0639589045043816,
+        "cvar95_loss": -1.0639589045043816,
+        "cvar99_loss": -1.0639589045043816,
+        "mean_squared_error": 19.137592569417134
+      }
+    },
+    "novel3_minus_novel1_paired": {
+      "mean_pnl_delta": -4.142483177182922,
+      "wins": 0,
+      "ties": 1
+    },
+    "Novel_model_1": {
+      "fallback_count": 1,
+      "simulated_test_constraint_pass_count": 2
+    },
+    "Novel_model_3": {
+      "fallback_count": 1,
+      "simulated_test_constraint_pass_count": 2
+    },
+    "projection": {
+      "updates": 10000,
+      "projected_steps": 4714,
+      "bounded_recovery_steps": 3234,
+      "predicted_breaches_before": 4714,
+      "predicted_breaches_after": 3234
+    }
+  },
+  "heston_figure5": {
+    "complete": true,
+    "evaluation_samples": 1000000,
+    "pricing_samples": 262144,
+    "rows": {
+      "recurrent": {
+        "risk_adjusted_price": 4.452501821005414,
+        "mean_loss_after_price": -1.5433728334744647,
+        "mean_loss_before_price": 2.9091289875309485,
+        "realized_cvar99_after_price": -0.013781574602622281,
+        "test_cvar99_before_price": 4.438720246402788,
+        "mean_trading_cost": 1.2059841049422708,
+        "paper_price": 5.5137,
+        "price_difference_from_paper": -1.0611981789945863
+      },
+      "simpler": {
+        "risk_adjusted_price": 4.504109076739443,
+        "mean_loss_after_price": -1.3968749516102072,
+        "mean_loss_before_price": 3.107234125129233,
+        "realized_cvar99_after_price": -0.007978123339294648,
+        "test_cvar99_before_price": 4.496130953400145,
+        "mean_trading_cost": 1.404517532640603,
+        "paper_price": 6.7446,
+        "price_difference_from_paper": -2.240490923260557
+      }
+    },
+    "paper_reported": {
+      "recurrent": {
+        "mean_loss": 0.0018,
+        "price": 5.5137,
+        "realized_cvar": -0.0022
+      },
+      "simpler": {
+        "mean_loss": 0.0022,
+        "price": 6.7446,
+        "realized_cvar": -0.0
+      }
+    },
+    "recurrent_minus_simpler_price": -0.051607255734029245,
+    "histogram_loss_definition": "Payoff minus hedge gain plus costs, before premium",
+    "histogram_outside_count": {
+      "recurrent": 243,
+      "simpler": 355
+    }
+  }
+}
+
