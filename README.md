@@ -1,5 +1,7 @@
 # Tail-Aware Deep Hedging
 
+[Experiment log and results](docs/EXPERIMENT_LOG.md)
+
 We compare `Novel_model_1` with the semi-recurrent Deep Hedging strategy from Buehler et al. and a classical hedge in each market. The research question is whether the new strategy reduces the probability of a terminal hedging loss within a fixed CVaR95 budget.
 
 | Study | Our strategy | Paper comparison | Classical benchmark |
